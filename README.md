@@ -9,7 +9,7 @@ This guide walks you through using a Dockerfile to create and manage a Docker im
 Below is the Dockerfile used to build the image:
 
 ```dockerfile
-FROM continuumio/miniconda3
+FROM rocker/r-ver:4.5.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -33,7 +33,8 @@ RUN apt install -y \
     cmake \
     libgeos-dev \
     libproj-dev \
-    r-base
+    libgit2-dev \
+    pkgconf
 
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 
