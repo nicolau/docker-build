@@ -34,7 +34,10 @@ RUN apt install -y \
     libgeos-dev \
     libproj-dev \
     libgit2-dev \
-    pkgconf
+    pkgconf \
+    libx11-dev \
+    libgmp-dev \
+    libmpfr-dev
 
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 
@@ -44,10 +47,19 @@ RUN R -e "install.packages('BiocManager', repos='https://cloud.r-project.org')"
 RUN R -e "BiocManager::install(ask = FALSE)"
 RUN R -e "BiocManager::install('rhdf5', ask = FALSE)"
 RUN R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
+RUN R -e "BiocManager::install('imager', ask = FALSE)"
+RUN R -e "devtools::install_github('AdamRahman/sdpt3r')"
+RUN R -e "install.packages('rcdd', repos='https://cloud.r-project.org')"
+RUN R -e "install.packages('Rmpfr', repos='https://cloud.r-project.org')"
+RUN R -e "install.packages('CVXR', repos='https://cloud.r-project.org')"
+RUN R -e "devtools::install_github('stla/PlaneGeometry')"
+RUN R -e "install.packages('moments', repos='https://cloud.r-project.org')"
+RUN R -e "install.packages(c('tidyverse', 'data.table', 'igraph', 'doParallel', 'foreach', 'MetBrewer', 'raster', 'rgl', 'rayshader', 'sf'), repos='https://cloud.r-project.org')"
 
 # Install specific R libraries here!
 
 CMD ["/bin/bash"]
+
 ```
 
 ---
