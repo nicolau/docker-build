@@ -55,6 +55,8 @@ RUN R -e "install.packages('CVXR', repos='https://cloud.r-project.org')"
 RUN R -e "devtools::install_github('stla/PlaneGeometry')"
 RUN R -e "install.packages('moments', repos='https://cloud.r-project.org')"
 RUN R -e "install.packages(c('tidyverse', 'data.table', 'igraph', 'doParallel', 'foreach', 'MetBrewer', 'raster', 'rgl', 'rayshader', 'sf'), repos='https://cloud.r-project.org')"
+RUN R -e "install.packages('reshape2', repos='https://cloud.r-project.org')"
+RUN R -e "install.packages('viridis', repos='https://cloud.r-project.org')"
 
 # Install specific R libraries here!
 
