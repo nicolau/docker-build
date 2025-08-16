@@ -2,9 +2,11 @@ FROM rocker/r-ver:4.5.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN rm -rf /var/lib/apt/lists/*
 RUN apt update -y && apt upgrade -y
 
-RUN apt install -y \
+RUN apt install -y --no-install-recommends \
+    default-libmysqlclient-dev \
     vim \
     htop \
     curl \
