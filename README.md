@@ -13,9 +13,11 @@ FROM rocker/r-ver:4.5.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN rm -rf /var/lib/apt/lists/*
 RUN apt update -y && apt upgrade -y
 
-RUN apt install -y \
+RUN apt install -y --no-install-recommends \
+    default-libmysqlclient-dev \
     vim \
     htop \
     curl \
@@ -61,7 +63,6 @@ RUN R -e "install.packages('viridis', repos='https://cloud.r-project.org')"
 # Install specific R libraries here!
 
 CMD ["/bin/bash"]
-
 ```
 
 ---
@@ -75,6 +76,12 @@ docker build -t IMAGE_NAME .
 ```
 
 This builds the image and tags it as `IMAGE_NAME`.
+
+If you encounter issues while building the Docker image, try forcing a fresh build with:
+
+```bash
+docker build --no-cache --pull -t IMAGE_NAME .
+```
 
 ---
 
